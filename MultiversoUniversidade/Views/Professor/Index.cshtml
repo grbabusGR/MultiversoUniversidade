@@ -1,0 +1,166 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/ProfessorJS.js?v=1"></script>
+<style>
+    .btn-space {
+        margin-left: -5%;
+        background-color: cornflowerblue;
+        font-size: large;
+    }
+</style>
+<h2>Index</h2>
+<div ng-app="myApp">
+    <div class="loading-spiner-holder" data-loading style=" margin: auto;width: 100%;height: 100%;padding: 10px;"><div class="loading-spiner" style=" margin: auto;width: 100%;height: 100%;padding: 10px;"><img src="~/Images/Atomos.gif" /></div></div>
+
+    <div ng-controller="myCtrl" ng-init="getProfessores()" class="divList">
+
+        <button ng-click="NovoProfessor()" class="btn btn-default">Novo</button>
+
+
+
+        @*------------------Model Novo Editar-*@
+        <modal title="Novo" visible="showModal" id="Modal">
+            <div class="form-horizontal" role="form">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Nome:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" placeholder="nome" id="nome" ng-model="nome">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Apelido:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" placeholder="apelido" id="apelido" ng-model="apelido">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Email:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" id="email" placeholder="email" ng-model="email">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Data Nascimento:</label>
+                                <div class="col-md-8">
+
+                                    <input type="text" class="form-control" placeholder="Data Nascimento" id="dataNascimento" ng-model="dataNascimento">
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Salário:</label>
+                                <div class="col-md-8">
+
+                                    <input type="text" class="form-control" placeholder="Salário" id="salario" ng-model="salario">
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-lg-4">
+                        <input type="button" id="btnSave" class="form-control btn-space" value="Gravar" ng-click="InsertData()" />
+                    </div>
+                </div>
+            </div>
+
+        </modal>
+        @*------------------Model Novo Editar-*@
+        <p class="divHead">Lista de Professores</p>
+        <table cellpadding="12" class="table table-bordered table-hover">
+            <tr>
+
+                <td>
+                    <b>Nome</b>
+                </td>
+                <td>
+                    <b>Apelido</b>
+                </td>
+                <td>
+                    <b>Data Nascimento</b>
+                </td>
+                <td>
+                    <b>Email</b>
+                </td>
+                <td>
+                    <b>Salário</b>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr ng-repeat="professor in professores">
+
+                <td>
+                    {{professor.nome}}
+                </td>
+                <td>
+                    {{professor.apelido}}
+                </td>
+
+                <td>
+
+                    {{professor.dataNascimento }}
+                </td>
+                <td>
+                    {{professor.email}}
+                </td>
+                <td>
+                    {{professor.salario}}
+                </td>
+                <td>
+                    <input type="button" class="btn btn-warning" value="Editar" ng-click="UpdateProfessor(professor)" />
+
+                </td>
+                <td>
+
+                    <input type="button" class="btn btn-danger" value="Apagar" ng-click="DeleteProfessor(professor)" />
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    @Html.Hidden("id")
+
+</div>
+
+
+
+<script>
+
+
+</script>

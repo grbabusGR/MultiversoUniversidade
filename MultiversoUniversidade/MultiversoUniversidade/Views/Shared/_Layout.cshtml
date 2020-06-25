@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Multiverso Universidade</title>
+
+    <meta property="og:title" content="Multiverso Universidade" />
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <link rel="icon" type="image/png" href="~/images/favicon.png">
+    <?php $slash = dirname($_SERVER['PHP_SELF']) !== "/" ? '/' : ''; ?>
+    <meta property="og:url" content="//<?= $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) ?><?= $slash ?>">
+    <meta property="og:image" content="//<?= $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) ?><?= $slash ?>images/share.png" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Content/Site.css?v=1">
+
+
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Multiverso Universidade", "Index", "Home", new { area = "" }, new { @class = "imgPrincipal" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+
+                    <li>
+
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Alunos <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Ficha de Alunos", "Index", "Aluno")</li>
+
+                            @*<li class="nav-divider"></li>
+                            <li>@Html.ActionLink("Ver Notas por Disciplina", "notasDisciplina", "Aluno")</li>*@
+                        </ul>
+
+
+                    </li>
+                    <li>
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Professores <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Ficha de Professores", "Index", "Professor")</li>
+                            <li class="nav-divider"></li>
+                            <li>@Html.ActionLink("Notas do Aluno", "Index", "NotasAluno")</li>
+
+
+                        </ul>
+
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Cursos <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Ficha de Cursos", "Index", "Curso")</li>
+
+
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Disciplinas <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Ficha de Disciplina", "Index", "Disciplina")</li>
+
+
+                        </ul>
+                    </li>
+                    <li>
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Listagens <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Lista Cursos/Média nota por Aluno", "lCurso", "Listagem")</li>
+                            <li class="nav-divider"></li>
+                            <li>@Html.ActionLink("Lista Disciplinas", "lDisciplina", "Listagem")</li>
+                            <li class="nav-divider"></li>
+                            <li>@Html.ActionLink("Lista Alunos/Notas", "LAluno", "Listagem")</li>
+
+                        </ul>
+
+                    </li>
+                    
+                </ul>
+
+
+                @*@Html.Partial("_LoginPartial")*@
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+
+       
+        @RenderBody()
+        <hr />
+        <footer>
+            <p style="color:white;">&copy; @DateTime.Now.Year -Multiverso Universidade</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

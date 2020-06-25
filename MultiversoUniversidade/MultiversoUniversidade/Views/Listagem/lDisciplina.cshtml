@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "lCurso";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/lDisciplinasJS.js?v=3"></script>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/ngPrint.min.js"></script>
+<link rel="stylesheet" href="~/Content/Site.css?v=1">
+<style>
+    .btn-space {
+        margin-left: -5%;
+        background-color: cornflowerblue;
+        font-size: large;
+    }
+
+
+    .center {
+        margin: auto;
+        width: 60%;
+        padding: 10px;
+    }
+</style>
+</br>
+
+<div ng-app="myApp">
+    <div class="loading-spiner-holder" data-loading style=" margin: auto;width: 100%;height: 100%;padding: 10px;"><div class="loading-spiner" style=" margin: auto;width: 100%;height: 100%;padding: 10px;"><img src="~/Images/Atomos.gif" /></div></div>
+    <div ng-controller="myCtrl" ng-init="getlDisciplinas()" class="divList">
+
+        <button class="btn btn-primary no-print" ng-print print-element-id="todo">
+            <i class="fa fa-print"></i>
+            Imprimir
+        </button>
+
+
+        <div ng-repeat="item in lcurso" id="todo">
+
+
+            <div class="mu-container mu-orange">
+                <h2>Descrição Disciplina: {{item.nomeDisciplina}}</h2>
+            </div>
+            @*-------------------Professores-----------------*@
+            <div ng-repeat="profe in item.LDisciplinaSub">
+                <div class="mu-container mu-blue-gray">
+                    <h3>Nome Professor:  {{profe.nomeProfessor}}</h3>
+                </div>
+                @*-------------------------------Alunos e notas*@
+                <div ng-repeat="alunos in profe.lDisciplinaSub1">
+
+
+                    <div class="mu-container mu-border-deep-orange">
+
+
+
+                        <table cellpadding="12" class="table table-bordered table-hover">
+                            <tr>
+
+                                <td>
+                                    <b>Alunos</b>
+                                </td>
+                                <td>
+                                    <b>Data</b>
+                                </td>
+                                <td>
+                                    <b>Notas</b>
+                                </td>
+
+                            </tr>
+                            <tr ng-repeat="disci in alunos.lAlunosNota">
+
+                                <td>
+                                    {{disci.nomeAluno}}
+                                </td>
+                                <td>
+                                    {{disci.data}}
+                                </td>
+                                <td>
+                                    {{disci.nota}}
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
