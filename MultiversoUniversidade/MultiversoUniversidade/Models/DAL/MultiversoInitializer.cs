@@ -34,7 +34,8 @@ namespace MultiversoUniversidade.Models.DAL
             var disciplinaCurso = new List<DisciplinaCurso>
             {
                 new DisciplinaCurso { id = 1,idCurso=1,idDisciplina=1  },
-                new DisciplinaCurso { id = 2 ,idCurso=1,idDisciplina=2  } 
+                new DisciplinaCurso { id = 2 ,idCurso=1,idDisciplina=2  } ,
+                 new DisciplinaCurso { id =3 ,idCurso=1,idDisciplina=3  }
             };
 
             disciplinaCurso.ForEach(s => context.DisciplinasCursos.Add(s));

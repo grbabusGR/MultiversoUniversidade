@@ -132,6 +132,16 @@ namespace MultiversoUniversidade.Controllers
                 db.AlunosCurso.Add(alC);
                 db.SaveChanges();
 
+                    curso = db.Cursos.Where(x => x.id == curso.id).SingleOrDefault();
+
+                    if (curso.alunosCurso == null)
+                    {
+                        curso.alunosCurso = new List<AlunosCurso>();
+                    }
+                    curso.alunosCurso.Add(alC);
+
+                    db.SaveChanges();
+
                 }
             else
             {
