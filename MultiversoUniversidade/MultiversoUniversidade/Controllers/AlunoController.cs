@@ -143,9 +143,9 @@ namespace MultiversoUniversidade.Controllers
                     curso.alunosCurso.Add(alC);
 
                     db.SaveChanges();
-
+                    //Atualiza o Curso
                 }
-            else
+                else
             {
                 ret =  "Erro na edição";
             }
