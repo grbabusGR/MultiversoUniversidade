@@ -103,6 +103,7 @@ namespace MultiversoUniversidade.Controllers
             try {  
             if (aluno != null)
             {
+                    
 
                 var Emp_ = db.Entry(aluno);
                 Aluno EmpObj = db.Alunos.Where(x => x.id == aluno.id).FirstOrDefault();
@@ -132,6 +133,7 @@ namespace MultiversoUniversidade.Controllers
                 db.AlunosCurso.Add(alC);
                 db.SaveChanges();
 
+                    //Atualiza o Curso
                     curso = db.Cursos.Where(x => x.id == curso.id).SingleOrDefault();
 
                     if (curso.alunosCurso == null)
