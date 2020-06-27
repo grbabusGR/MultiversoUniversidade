@@ -5,17 +5,19 @@
 }
 
 <script src="~/Scripts/angular.js"></script>
-<script src="~/Scripts/AlunoJS.js?v=6"></script>
+<script src="~/Scripts/AlunoJS.js?v=9"></script>
 <style>
     .btn-space {
         margin-left: -5%;
         background-color: cornflowerblue;
         font-size: large;
     }
+
+
 </style>
 <h2>Index</h2>
 <div ng-app="myApp">
-    <div class="loading-spiner-holder" data-loading style=" margin: auto;width: 100%;height: 100%;padding: 10px;"><div class="loading-spiner" style=" margin: auto;width: 100%;height: 100%;padding: 10px;"><img src="~/Images/Atomos.gif" /></div></div>
+    <div class="loading-spiner-holder" data-loading style=" margin: auto;width: 100%;height: 100%;padding: 10px;"><div class="loading-spiner" style=" margin: auto;width: 50%;height: 50%;padding: 10px;"><img src="~/Images/Atomos.gif" style=" border-radius: 50%;  max-width: 50%;  height: auto;"/></div></div>
 
     <div ng-controller="myCtrl" ng-init="getAlunos()" class="divList">
 
@@ -38,7 +40,7 @@
                                     </h3>
                                 </div>
                                 <div class="filter_subtitle">
-                                    <select ng-model="selectCurso" ng-options="curso.nome for curso in cursos" ng-change="setSelectCurso(selectCurso ) "></select>
+                                    <select ng-model="selectCurso" ng-options="curso.nome for curso in cursos " ng-change="setSelectCurso(selectCurso ) "></select>
                                 </div>
 
 
@@ -99,9 +101,9 @@
                                 <label class="col-md-4 control-label">Data Nascimento:</label>
                                 <div class="col-md-8">
 
+                                     
 
-
-                                    <input type="text" class="form-control" placeholder="Data Nascimento" id="dataNascimento" ng-model="dataNascimento">
+                                    <input type="date" class="form-control"    date-model="dataNascimento" placeholder="Data Nascimento" id="dataNascimento" ng-model="dataNascimento">
                                 </div>
                             </div>
                         </div>
@@ -139,7 +141,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr ng-repeat="aluno in alunos">
+            <tr ng-repeat="aluno in alunos ">
                 <td>
                     {{aluno.numeroFicha}}
                 </td>
@@ -152,7 +154,10 @@
 
                 <td>
 
-                    {{aluno.dataNascimento }}
+                    {{aluno.dataNascimento |date: "dd-MM-yyyy"}}
+
+
+
                 </td>
                 <td>
                     {{aluno.email}}
@@ -177,5 +182,5 @@
 
 <script>
     
-
+   
 </script>

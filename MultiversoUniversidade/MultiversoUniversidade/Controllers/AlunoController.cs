@@ -17,9 +17,23 @@ namespace MultiversoUniversidade.Controllers
 
         public JsonResult getAlunos()
         {
-            
+            string ret = "";
+            try { 
                 List<Aluno> aluno = db.Alunos.ToList();
                 return Json(aluno, JsonRequestBehavior.AllowGet);
+
+            } catch (Exception exe)
+            {
+                int linenum = exe.LineNumber();
+                ret = "Error a  Editar : " + exe.Message + " Linha Nº" + linenum;
+                if (exe.InnerException != null)
+                {
+
+                    ret += "\n INNER: " + exe.GetaAllMessages();
+
+                }
+            return Json(ret, JsonRequestBehavior.AllowGet);
+            }
             
         }
 
@@ -59,6 +73,7 @@ namespace MultiversoUniversidade.Controllers
             {
  
                     aluno.ativo = 1;
+                    
                     db.Alunos.Add(aluno);
                     db.SaveChanges();
                     
@@ -93,10 +108,18 @@ namespace MultiversoUniversidade.Controllers
             {
                 int linenum = exe.LineNumber();
                 ret = "Error a Inserir : " + exe.Message + " Linha Nº" + linenum;
+                if (exe.InnerException != null) {
+
+                    ret += "\n INNER: " + exe.GetaAllMessages();
+                   
+                }
+            
 
             }
             return ret;
         }
+
+
         public string UpdateAluno(Aluno aluno,Curso curso)
         {
             string ret = "Editado com sucesso!!";
@@ -153,8 +176,14 @@ namespace MultiversoUniversidade.Controllers
             {
                     int linenum = exe.LineNumber();
                     ret = "Error a  Editar : " + exe.Message + " Linha Nº" + linenum;
-                        
-              }
+                if (exe.InnerException != null)
+                {
+
+                    ret += "\n INNER: " + exe.GetaAllMessages();
+
+                }
+
+            }
 
             return ret;
 }
@@ -225,6 +254,12 @@ namespace MultiversoUniversidade.Controllers
             {
                 int linenum = exe.LineNumber();
                 ret = "Error a getNFicha : " + exe.Message + " Linha Nº" + linenum;
+                if (exe.InnerException != null)
+                {
+
+                    ret += "\n INNER: " + exe.GetaAllMessages();
+
+                }
 
             }
 

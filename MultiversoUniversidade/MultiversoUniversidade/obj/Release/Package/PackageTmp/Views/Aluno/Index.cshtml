@@ -1,0 +1,184 @@
+﻿
+@{
+    ViewBag.Title = "Aluno";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/AlunoJS.js?v=9"></script>
+<style>
+    .btn-space {
+        margin-left: -5%;
+        background-color: cornflowerblue;
+        font-size: large;
+    }
+</style>
+<h2>Index</h2>
+<div ng-app="myApp">
+    <div class="loading-spiner-holder" data-loading style=" margin: auto;width: 100%;height: 100%;padding: 10px;"><div class="loading-spiner" style=" margin: auto;width: 100%;height: 100%;padding: 10px;"><img src="~/Images/Atomos.gif" /></div></div>
+
+    <div ng-controller="myCtrl" ng-init="getAlunos()" class="divList">
+
+        <button ng-click="NovoAluno()" class="btn btn-default">Novo</button>
+
+
+
+        @*------------------Model Novo Editar-*@
+        <modal title="Novo Aluno" visible="showModal" id="Modal">
+            <div class="form-horizontal" role="form">
+                <div class="container">
+                    @*------------------------------------------------Cusros------------------------------------*@
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="form-group">
+                                <div class="filter_subtitle">
+
+                                    <h3 class="mu-text-blue">
+                                        Cursos
+                                    </h3>
+                                </div>
+                                <div class="filter_subtitle">
+                                    <select ng-model="selectCurso" ng-options="curso.nome for curso in cursos " ng-change="setSelectCurso(selectCurso ) "></select>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                    @*------------------------------------------------Cusros------------------------------------*@
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Nº Ficha:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" placeholder="nome" id="numeroFicha" ng-model="numeroFicha" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Nome:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" placeholder="nome" id="nome" ng-model="nome">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Apelido:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" placeholder="apelido" id="apelido" ng-model="apelido">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Email:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" id="email" placeholder="email" ng-model="email">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Data Nascimento:</label>
+                                <div class="col-md-8">
+
+                                     
+
+                                    <input type="date" class="form-control"    date-model="dataNascimento" placeholder="Data Nascimento" id="dataNascimento" ng-model="dataNascimento">
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-lg-4">
+                        <input type="button" id="btnSave" class="form-control btn-space" value="Gravar" ng-click="InsertData()" />
+                    </div>
+                </div>
+            </div>
+
+        </modal>
+        @*------------------Model Novo Editar-*@
+        <p class="divHead">Lista de Alunos</p>
+        <table cellpadding="12" class="table table-bordered table-hover">
+            <tr>
+                <td>
+                    <b>Nº Ficha</b>
+                </td>
+                <td>
+                    <b>Nome</b>
+                </td>
+                <td>
+                    <b>Apelido</b>
+                </td>
+                <td>
+                    <b>Data Nascimento</b>
+                </td>
+                <td>
+                    <b>Email</b>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr ng-repeat="aluno in alunos ">
+                <td>
+                    {{aluno.numeroFicha}}
+                </td>
+                <td>
+                    {{aluno.nome}}
+                </td>
+                <td>
+                    {{aluno.apelido}}
+                </td>
+
+                <td>
+
+                    {{aluno.dataNascimento |date: "dd-MM-yyyy"}}
+
+
+
+                </td>
+                <td>
+                    {{aluno.email}}
+                </td>
+                <td>
+                    <input type="button" class="btn btn-warning" value="Editar" ng-click="UpdateAluno(aluno)" />
+
+                </td>
+                <td>
+
+                    <input type="button" class="btn btn-danger" value="Apagar" ng-click="DeleteAluno(aluno)" />
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    @Html.Hidden("id")
+
+</div>
+ 
+
+
+<script>
+    
+   
+</script>

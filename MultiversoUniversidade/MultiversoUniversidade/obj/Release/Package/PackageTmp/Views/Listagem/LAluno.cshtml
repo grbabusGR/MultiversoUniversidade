@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "lCurso";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/LAlunoJS.js"></script>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/ngPrint.min.js"></script>
+<link rel="stylesheet" href="~/Content/Site.css?v=1">
+<style>
+    .btn-space {
+        margin-left: -5%;
+        background-color: cornflowerblue;
+        font-size: large;
+    }
+
+
+    .center {
+        margin: auto;
+        width: 60%;
+        padding: 10px;
+    }
+</style>
+</br>
+
+<div ng-app="myApp">
+    <div class="loading-spiner-holder" data-loading style=" margin: auto;width: 100%;height: 100%;padding: 10px;"><div class="loading-spiner" style=" margin: auto;width: 100%;height: 100%;padding: 10px;"><img src="~/Images/Atomos.gif" /></div></div>
+    <div ng-controller="myCtrl" ng-init="getlDisciplinas()" class="divList">
+
+        <button class="btn btn-primary no-print" ng-print print-element-id="todo">
+            <i class="fa fa-print"></i>
+            Imprimir
+        </button>
+        <div ng-repeat="item in lcurso" id="todo">
+
+
+            <div class="mu-container mu-orange">
+                <h2>Aluno: {{item.nomeAluno}}</h2>
+            </div>
+             
+             
+
+                <div class="mu-container mu-border-deep-orange">
+
+
+
+                    <table cellpadding="12" class="table table-bordered table-hover">
+                        <tr>
+
+                            <td>
+                                <b>Disciplina</b>
+                            </td>
+                            <td>
+                                <b>Professor</b>
+                            </td>
+                            <td>
+                                <b>Data</b>
+                            </td>
+                            <td>
+                                <b>Nota</b>
+                            </td>
+
+                        </tr>
+                        <tr ng-repeat="notas in item.lAlunosNota">
+
+                            <td>
+                                {{notas.descricaoDisciplina}}
+                            </td>
+                            <td>
+                                {{notas.nomeProfessor}}
+                            </td>
+                            <td>
+                                {{notas.data}}
+                            </td>
+                            <td>
+                                {{notas.nota}}
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+
+
+            
+        </div>
+
+    </div>
+</div>
+

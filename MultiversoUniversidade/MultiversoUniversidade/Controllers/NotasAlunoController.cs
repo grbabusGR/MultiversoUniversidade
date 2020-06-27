@@ -112,6 +112,7 @@ namespace MultiversoUniversidade.Controllers
             }
             return ret;
         }
+
         public JsonResult GetDisciplinaAluno(Curso curso,Aluno aluno)
         {
 

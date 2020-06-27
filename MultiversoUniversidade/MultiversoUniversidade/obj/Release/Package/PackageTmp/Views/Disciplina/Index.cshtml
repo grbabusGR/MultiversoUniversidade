@@ -1,0 +1,158 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/DisciplinaJS.js"></script>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<style>
+    .btn-space {
+        margin-left: -5%;
+        background-color: cornflowerblue;
+        font-size: large;
+    }
+
+
+    .center {
+        margin: auto;
+        width: 60%;
+        padding: 10px;
+    }
+</style>
+ 
+<div ng-app="myApp">
+    <div class="loading-spiner-holder" data-loading style=" margin: auto;width: 100%;height: 100%;padding: 10px;"><div class="loading-spiner" style=" margin: auto;width: 100%;height: 100%;padding: 10px;"><img src="~/Images/Atomos.gif" /></div></div>
+    <div ng-controller="myCtrl" ng-init="getDisciplina()" class="divList">
+
+
+
+        @*------------------Model Novo Editar-*@
+        <modal title=" " visible="showModal" id="Modal">
+            <div class="form-horizontal" role="form">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Nome:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" placeholder="nome" id="nome" ng-model="nome">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Descricao:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" placeholder="descricao" id="descricao" ng-model="descricao">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Ciclo:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" placeholder="ciclo" id="ciclo" ng-model="ciclo">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*-----------------------------------------------Professores------------------------------------*@
+
+
+                    <div class="row" style="overflow-y: scroll; height:150px;">
+
+                        <div class="filter_subtitle">
+                            <span>
+                                Professores
+                            </span>
+                        </div>
+
+                        <div ng-repeat="item in Professores track by $index">
+                            <label>  <input type="checkbox" id="{{item.id}}" ng-model="list[item.id]" name="checkDisci" ng-checked="item.ativo !== -1" ng-change="change(item, item.id)">{{item.nome}}</label>
+                        </div>
+
+                    </div>
+
+
+
+                    @*------------------------------------------------Professores------------------------------------*@
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-lg-4">
+                        <input type="button" id="btnSave" class="form-control btn-space" value="Gravar" ng-click="InsertData()" />
+                    </div>
+                </div>
+            </div>
+
+        </modal>
+        @*------------------Model Novo Editar-*@
+        </br>
+        </br>
+        </br>
+        
+        <div class="row">
+            <button ng-click="NovaDisciplina()" class="btn btn-default">Novo</button>
+            </br>
+            </br>
+            <p class="divHead">Lista de Disciplinas</p>
+
+            <table cellpadding="12" class="table table-bordered table-hover">
+                <tr>
+
+                    <td>
+                        <b>Nome</b>
+                    </td>
+                    <td>
+                        <b>Descrição</b>
+                    </td>
+                    <td>
+                        <b>Ciclo</b>
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr ng-repeat="disciplina in Disciplinas">
+
+                    <td>
+                        {{disciplina.nome}}
+                    </td>
+                    <td>
+                        {{disciplina.descricao}}
+                    </td>
+                    <td>
+                        {{disciplina.ciclo}}
+                    </td>
+
+                    <td>
+                        <input type="button" class="btn btn-warning" value="Editar" ng-click="UpdateDisciplina(disciplina)" />
+
+                    </td>
+                    <td>
+
+                        <input type="button" class="btn btn-danger" value="Apagar" ng-click="DeleteDisciplina(disciplina)" />
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        @Html.Hidden("id")
+
+    </div>
+</div>
+
+
+<script>
+
+
+</script>
+
+
+

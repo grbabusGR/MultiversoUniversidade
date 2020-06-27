@@ -13,7 +13,7 @@ namespace MultiversoUniversidade.Models
         public string nome { get; set; }
         public string apelido { get; set; }
         public string email { get; set; }
-        public DateTime dataNascimento { get; set; }
+        public DateTime  dataNascimento { get; set; }
        // public Curso cursoAluno { get; set; }
     }
 }

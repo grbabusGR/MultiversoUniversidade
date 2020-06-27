@@ -1,0 +1,167 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/angular.js"></script>
+<script src="~/Scripts/CursoJS.js?v=1"></script>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<style>
+    .btn-space {
+        margin-left: -5%;
+        background-color: cornflowerblue;
+        font-size: large;
+    }
+
+     
+    .center {
+        margin: auto;
+        width: 60%;
+        
+        padding: 10px;
+    }
+ 
+</style>
+
+<div ng-app="myApp">
+    <div class="loading-spiner-holder" data-loading style=" margin: auto;width: 100%;height: 100%;padding: 10px;"><div class="loading-spiner" style=" margin: auto;width: 100%;height: 100%;padding: 10px;"><img src="~/Images/Atomos.gif" /></div></div>
+    <div ng-controller="myCtrl" ng-init="getCursos()" class="divList">
+
+        <button ng-click="NovoCurso()" class="btn btn-default">Novo</button>
+
+
+
+        @*------------------Model Novo Editar-*@
+        <modal title=" " visible="showModal" id="Modal">
+            <div class="form-horizontal" role="form">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Nome:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" placeholder="nome" id="nome" ng-model="nome">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-lg-4">
+                            <div class="form-group">
+                                <label class="col-md-4 control-label">Descricao:</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control" placeholder="descricao" id="descricao" ng-model="descricao">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @*------------------------------------------------Professor------------------------------------*@
+
+                    @*<div class="row">
+
+                        <div class="filter_subtitle">
+
+                            <span>
+                                Professor
+                            </span>
+                        </div>
+                        <div class="filter_subtitle">
+                            <select ng-model="selectProf" ng-options="prof.nome for prof in Professores" ng-change="setSelectProf(selectProf ) "></select>
+                        </div>
+                        <br />
+
+                    </div>*@
+
+                    @*------------------------------------------------Professor------------------------------------*@
+                    @*-----------------------------------------------Disciplinas------------------------------------*@
+
+
+                    <div class="row" style="overflow-y: scroll; height:150px;">
+
+                        <div class="filter_subtitle">
+
+                            <span>
+                                Disciplinas
+                            </span>
+
+                        </div>
+
+                        <div ng-repeat="item in Disciplinas track by $index">
+                            <label>  <input type="checkbox" id="{{item.id}}" ng-model="list[item.id]" name="checkDisci" ng-checked="item.ativo !== -1" ng-change="change(item, item.id)">{{item.nome}}</label>
+                        </div>
+
+                    </div>
+
+                    @*<select multiple>
+                        <option value="">Professor</option>
+                        <optgroup ng-repeat="model in cursos" label="{{model.nome}}">
+                            <option ng-repeat="variant in model.Disciplinas" value="{{model}}">{{  variant.nome }}</option>
+
+                        </optgroup>
+                    </select>*@
+
+                    @*------------------------------------------------Disciplinas------------------------------------*@
+
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 col-lg-4">
+                        <input type="button" id="btnSave" class="form-control btn-space" value="Gravar" ng-click="InsertData()" />
+                    </div>
+                </div>
+            </div>
+
+        </modal>
+        @*------------------Model Novo Editar-*@
+      
+        <p class="divHead">Lista de Cursos</p>
+        <table cellpadding="12" class="table table-bordered table-hover">
+            <tr>
+
+                <td>
+                    <b>Nome</b>
+                </td>
+                <td>
+                    <b>Descrição</b>
+                </td>
+
+                <td></td>
+                <td></td>
+            </tr>
+            <tr ng-repeat="curso in cursos">
+
+                <td>
+                    {{curso.nome}}
+                </td>
+                <td>
+                    {{curso.descricao}}
+                </td>
+
+
+                <td>
+                    <input type="button" class="btn btn-warning" value="Editar" ng-click="UpdateCurso(curso)" />
+
+                </td>
+                <td>
+
+                    <input type="button" class="btn btn-danger" value="Apagar" ng-click="DeleteCurso(curso)" />
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    @Html.Hidden("id")
+    @Html.Hidden("idProfe")
+</div>
+
+
+
+<script>
+    
+
+</script>
+
+

@@ -225,6 +225,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\CursoJS.js" />
     <Content Include="Scripts\DisciplinaJS.js" />
@@ -244,7 +245,9 @@
     <Content Include="Scripts\ngPrint.min.js" />
     <Content Include="Scripts\NotasAlunoJS.js" />
     <Content Include="Scripts\ProfessorJS.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
